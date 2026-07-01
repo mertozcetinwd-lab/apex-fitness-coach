@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-canvas:    #0A0A0A;
+  --color-layer:     #111111;
+  --color-raised:    #1A1A1A;
+  --color-edge:      #252525;
+  --color-signal:    #00E87A;
+  --color-signal-10: color-mix(in srgb, #00E87A 10%, transparent);
+  --color-soft:      #555E6A;
+  --color-on-signal: #000000;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0A0A0A;
+  background-image:
+    linear-gradient(rgba(37, 37, 37, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 37, 37, 0.35) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: #ffffff;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Thin custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #252525;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00E87A;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 1px solid #00E87A;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
